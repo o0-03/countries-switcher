@@ -66,13 +66,14 @@
 import arrowLeftSvg from "@/assets/arrow-left.svg";
 export default {
   props: {
-    selectedCountry: {
-      type: Object,
+    selectedCountryName: {
+      type: String,
       required: true,
     },
   },
   data() {
     return {
+      selectedCountry: null,
       countries: [],
       arrowLeftSvg,
     };
@@ -82,6 +83,7 @@ export default {
       try {
         const response = await fetch("/data.json");
         this.countries = await response.json();
+        this.selectedCountry = this.findCountryByName(this.selectedCountryName);
       } catch (error) {
         console.error("Error loading countries data:", error);
       }
@@ -89,12 +91,15 @@ export default {
     findCountryByCode(code) {
       return this.countries.find((c) => c.alpha3Code === code);
     },
+    findCountryByName(name) {
+      return this.countries.find((c) => c.name === name);
+    },
     handleBorderClick(code) {
       const borderCountry = this.findCountryByCode(code);
       if (borderCountry) {
+        this.selectedCountry = borderCountry;
         this.$router.push({
-          path: "/details",
-          query: { id: borderCountry.name },
+          path: `/details/${borderCountry.name}`,
         });
       }
     },

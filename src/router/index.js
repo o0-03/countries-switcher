@@ -9,9 +9,10 @@ const routes = [
     component: Index,
   },
   {
-    path: "/details",
+    path: "/details/:countryName",
     name: "Details",
     component: Details,
+    props: (route) => ({ countryName: route.params.countryName }),
   },
   {
     path: "/info",

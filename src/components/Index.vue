@@ -72,10 +72,9 @@ export default {
   },
   methods: {
     goToDetails(selectedCountry) {
-      console.log(selectedCountry.name); //这里能成
       this.$router.push({
         name: "Details",
-        query: { selectedCountry: JSON.stringify(selectedCountry) },
+        params: { countryName: selectedCountry.name },
       });
     },
   },

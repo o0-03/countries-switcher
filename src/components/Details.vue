@@ -1,7 +1,7 @@
 <template>
   <div id="details">
     <Header />
-    <Info :selectedCountry="selectedCountry" />
+    <Info :selectedCountryName="selectedCountryName" />
   </div>
 </template>
 
@@ -14,16 +14,13 @@ export default {
     Header,
     Info,
   },
-
+  data() {
+    return {
+      selectedCountryName: "",
+    };
+  },
   created() {
-    const query = this.$route.query.selectedCountry;
-    if (query) {
-      try {
-        this.selectedCountry = JSON.parse(query);
-      } catch (e) {
-        console.error("Error parsing selectedCountry:", e);
-      }
-    }
+    this.selectedCountryName = this.$route.params.countryName;
   },
 };
 </script>
