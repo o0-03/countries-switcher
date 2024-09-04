@@ -43,9 +43,9 @@
           <div class="info-bottom">
             <span>Border Countries:</span>
             <div class="border-countries">
-              <p v-if="selectedCountry.borders.length === 0" class="none-text">
-                none
-              </p>
+              <span v-if="!selectedCountry.borders" class="none-text"
+                >none</span
+              >
               <p
                 v-for="code in selectedCountry.borders"
                 :key="code"
@@ -135,32 +135,6 @@ export default {
   --color-grey: rgb(64, 64, 64);
 }
 
-body {
-  background-color: var(--color-background-heavy);
-}
-header {
-  position: sticky;
-  top: 0;
-  z-index: 99;
-}
-.header {
-  background-color: var(--color-background-light);
-  padding: 2rem 1rem;
-  box-shadow: 0 0 0.5rem var(--color-shadow);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--color-font-bold);
-  .mode {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    img {
-      height: 20px;
-    }
-  }
-}
-
 /* datails css */
 .back {
   margin: 2rem;
@@ -208,6 +182,7 @@ header {
   .border-countries {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     .borderCountry {
       height: 2rem;
       line-height: 2rem;

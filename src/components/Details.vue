@@ -21,6 +21,7 @@ export default {
   },
   created() {
     this.selectedCountryName = this.$route.params.countryName;
+    console.log(this.selectedCountryName);
   },
 };
 </script>
